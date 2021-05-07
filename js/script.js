@@ -132,16 +132,18 @@ addPagination(results);
    noResults.textContent = "No Results Found";
 }  };
 
-const search = document.querySelector('#search');
-const submit = document.getElementById('#search-button');
+const search = document.getElementById('search');
+const submit = document.querySelector('button');
+
+
 
 submit.addEventListener('click', (e) => {
    e.preventDefault();
-   searchFilter(search,data);
-});
+   searchFilter(data);
+}); 
 
 search.addEventListener('keyup', () => {
-   searchFilter(search,data);
+   searchFilter(data);
 });
 
 
