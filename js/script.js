@@ -35,16 +35,16 @@ function showPage (list, page){
       if(i >= startIndex && i < endIndex) {
       
          let student = 
-         `<li class="student-item cf">
-            <div class="student-details">
-               <img class="avatar" src = ${data[i].picture.large} alt="Profile Picture">
-               <h3 >${data[i].name.first} ${data[i].name.last}</h3>
-               <span class="email">${data[i].email}</span>
-            </div>
-            <div class="joined-details">
-            <span class="date"> Joined ${data[i].registered.date}</span>
-            </div>
-         </li>`
+             `<li class="student-item cf">
+                  <div class="student-details">
+                     <img class="avatar" src = ${list[i].picture.large} alt="Profile Picture">
+                     <h3 >${list[i].name.first} ${list[i].name.last}</h3>
+                     <span class="email">${list[i].email}</span>
+                  </div>
+                  <div class="joined-details">
+                     <span class="date"> Joined ${list[i].registered.date}</span>
+                  </div>
+               </li>`
       
          studentList.insertAdjacentHTML('beforeend', student);
 
@@ -111,7 +111,6 @@ function searchFilter (list) {
    const results = [];
 
 //loop over list and push into array
-
     for (let i = 0; i < list.length; i++) {
         let result = list[i].name.first.toLowerCase() + ' ' + list[i].name.last.toLowerCase();
         if (result !== 0 && result.includes(inputValue)){
@@ -125,23 +124,24 @@ addPagination(results);
 
   //Display a no results found message 
    if(results.length === 0){
-   const createDiv = document.createElement('div');
-   const noResults = document.createElement('p');
-   createDiv.appendChild(noResults);
-   document.querySelector('.student-list').append(createDiv);
-   noResults.textContent = "No Results Found";
-}  };
+      const createDiv = document.createElement('div');
+      const noResults = document.createElement('p');
+      createDiv.appendChild(noResults);
+      document.querySelector('.student-list').append(createDiv);
+      noResults.textContent = "No Results Found";
+}  
+   };
 
 const search = document.getElementById('search');
 const submit = document.querySelector('button');
 
 
-
+//event listens to the click of search button
 submit.addEventListener('click', (e) => {
    e.preventDefault();
    searchFilter(data);
 }); 
-
+//event listens to words while being typed
 search.addEventListener('keyup', () => {
    searchFilter(data);
 });
@@ -150,4 +150,4 @@ search.addEventListener('keyup', () => {
 // Call functions
 showPage(data, 1);
 addPagination(data);
-searchFilter(data);
+searchFilter(search, data);
