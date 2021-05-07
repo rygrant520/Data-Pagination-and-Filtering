@@ -103,33 +103,38 @@ let searchBar = `<label for="search" class="student-search">
    const header = document.querySelector('.header');
    header.insertAdjacentHTML('beforeEnd', searchBar);
 
-  
+   
 
 //filter students by input
 function searchFilter (list) {
    const inputValue = document.querySelector('.student-search input').value.toLowerCase();
    const results = [];
-
+   active = document.querySelector('button');
+   active.className = 'active';
 //loop over list and push into array
     for (let i = 0; i < list.length; i++) {
         let result = list[i].name.first.toLowerCase() + ' ' + list[i].name.last.toLowerCase();
         if (result !== 0 && result.includes(inputValue)){
             results.push(list[i]);
+            
          }
       
- // display results of input
-showPage(results, 1);
-addPagination(results); 
-      }   
-
-  //Display a no results found message 
-   if(results.length === 0){
+//Display a no results found message 
+      if(results.length === 0){
       const createDiv = document.createElement('div');
       const noResults = document.createElement('p');
       createDiv.appendChild(noResults);
       document.querySelector('.student-list').append(createDiv);
       noResults.textContent = "No Results Found";
+  
 }  
+
+
+ // display results of input
+showPage(results, 1);
+addPagination(results); 
+      }   
+
    };
 
 const search = document.getElementById('search');
